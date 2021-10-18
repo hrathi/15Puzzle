@@ -13,16 +13,39 @@
             tools:context=".ui.main.MainFragment">
 
         <ImageView
-                android:id="@+id/tiles"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:imageUrl="@{viewModel.randomImageUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/fullImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:imageUrl="@{viewModel.randomImageUrl}"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"/>
 
-        </ImageView>
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:rowCount="4"
+            android:columnCount="4"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:gridSize="@{15}"
+            app:createGrid="@{viewModel}"
+            android:visibility="gone">
+        </GridLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Shuffle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

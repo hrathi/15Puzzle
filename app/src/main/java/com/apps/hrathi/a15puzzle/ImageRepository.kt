@@ -4,8 +4,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import kotlin.jvm.Throws
 
 class ImageRepository {
+    @Throws(Exception::class)
     fun getImageUrl(): String {
         val httpClient = OkHttpClient();
         val request = Request.Builder()
@@ -30,6 +32,6 @@ class ImageRepository {
     }
 
     companion object {
-        private const val ACCESS_KEY: String = "Tvl1sNw2KmfrYR1upXHrabrE78ZoUnf30Dsp_W_q6Rg"
+        private const val ACCESS_KEY: String = "Tvl1sNw2..."
     }
 }

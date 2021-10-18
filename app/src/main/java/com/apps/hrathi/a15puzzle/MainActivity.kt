@@ -2,6 +2,7 @@ package com.apps.hrathi.a15puzzle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.apps.hrathi.a15puzzle.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

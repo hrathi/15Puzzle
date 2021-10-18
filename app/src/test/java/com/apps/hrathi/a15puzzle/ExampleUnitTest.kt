@@ -1,5 +1,7 @@
 package com.apps.hrathi.a15puzzle
 
+import android.graphics.Bitmap
+import com.apps.hrathi.a15puzzle.ui.main.MainViewModel
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +14,16 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        val testMatrix  = arrayOf(
+            intArrayOf(1, 2, 3, 4),
+            intArrayOf(5, 6, 7, 8),
+            intArrayOf(9, 10, 11, 12),
+            intArrayOf(13, 14, 15, 16),
+        )
+
+        testMatrix.shuffle()
+        println(testMatrix)
+
+        // mockViewModel.splitImage()
     }
 }
