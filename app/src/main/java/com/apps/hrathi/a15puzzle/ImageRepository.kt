@@ -6,7 +6,7 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 
 class ImageRepository {
-    fun getImageUrl(): String {
+    suspend fun getImageUrl(): String {
         val httpClient = OkHttpClient();
         val request = Request.Builder()
             .url("https://api.unsplash.com/photos/random")
@@ -30,6 +30,6 @@ class ImageRepository {
     }
 
     companion object {
-        private const val ACCESS_KEY: String = "Tvl1"
+        private const val ACCESS_KEY: String = "Tvl1sNw2KmfrYR1upXHrabrE78ZoUnf30Dsp_W_q6Rg"
     }
 }

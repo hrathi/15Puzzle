@@ -51,16 +51,16 @@ class MainFragment : Fragment() {
         try {
             viewModel.fetchRandomImage()
         } catch (e: Exception) {
-            binding.button.text = "FAILED TO FETCH IMAGE"
+            binding.shuffle.text = "FAILED TO FETCH IMAGE"
         }
 
-        binding.button.setOnClickListener {
+        binding.shuffle.setOnClickListener {
             val x = binding.fullImage.drawable as BitmapDrawable
             val displayMetrics = DisplayMetrics()
             activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
 
-            var width = displayMetrics.widthPixels
-            var height = displayMetrics.heightPixels
+            val width = displayMetrics.widthPixels
+            val height = displayMetrics.heightPixels
 
             viewModel.shuffleImage(x.bitmap, width, height)
 

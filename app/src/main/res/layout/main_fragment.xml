@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:imageUrl="@{viewModel.randomImageUrl}"
-            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintBottom_toTopOf="@id/shuffle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,25 +27,31 @@
             android:id="@+id/gridLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:rowCount="4"
-            android:columnCount="4"
-            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintBottom_toTopOf="@id/shuffle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:gridSize="@{15}"
+            app:gridSize="@{viewModel.SHUFFLE_SIZE}"
             app:createGrid="@{viewModel}"
             android:visibility="gone">
         </GridLayout>
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
+            android:id="@+id/shuffle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shuffle"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:onClick="@{() -> viewModel.sort()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
