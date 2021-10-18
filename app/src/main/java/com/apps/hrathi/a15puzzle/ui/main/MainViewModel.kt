@@ -15,7 +15,7 @@ class MainViewModel : ViewModel() {
     private val imageRepository = ImageRepository()
     var randomImageUrl = MutableLiveData<String>()
 
-    private val bitmapList = ArrayList<ImageTile?>(SHUFFLE_SIZE) // hardcoded for 4x4 board
+    private val bitmapList = ArrayList<ImageTile>(SHUFFLE_SIZE) // hardcoded for 4x4 board
     val fullBitmapLiveData = MutableLiveData(bitmapList)
 
     @Throws(Exception::class)
@@ -67,21 +67,29 @@ class MainViewModel : ViewModel() {
     // TODO: Also add code when the puzzle is "solved".
     fun moveToEmpty(x : Int) {
         when {
-            bitmapList.size > (x+1) && bitmapList[x+1] == null -> {
-                bitmapList[x+1] = bitmapList[x]
-                bitmapList[x] = null
+            bitmapList.size > (x+1) && bitmapList[x+1].isEmpty -> {
+                bitmapList[x+1].bitmap = bitmapList[x].bitmap
+                bitmapList[x+1].newIndex = bitmapList[x].newIndex
+                bitmapList[x].bitmap = null
+                bitmapList[x].newIndex = -1
             }
-            (x-1) >= 0 && bitmapList[x-1] == null -> {
-                bitmapList[x-1] = bitmapList[x]
-                bitmapList[x] = null
+            (x-1) >= 0 && bitmapList[x-1].isEmpty -> {
+                bitmapList[x-1].bitmap = bitmapList[x].bitmap
+                bitmapList[x-1].newIndex = bitmapList[x].newIndex
+                bitmapList[x].bitmap = null
+                bitmapList[x].newIndex = -1
             }
-            bitmapList.size > (x+rows) && bitmapList[x+rows] == null -> {
-                bitmapList[x+rows] = bitmapList[x]
-                bitmapList[x] = null
+            bitmapList.size > (x+rows) && bitmapList[x+rows].isEmpty -> {
+                bitmapList[x+rows].bitmap = bitmapList[x].bitmap
+                bitmapList[x+rows].newIndex = bitmapList[x].newIndex
+                bitmapList[x].bitmap = null
+                bitmapList[x].newIndex = -1
             }
-            (x-rows) >= 0 && bitmapList[x-rows] == null -> {
-                bitmapList[x-4] = bitmapList[x]
-                bitmapList[x] = null
+            (x-rows) >= 0 && bitmapList[x-rows].isEmpty -> {
+                bitmapList[x-4].bitmap = bitmapList[x].bitmap
+                bitmapList[x-4].newIndex = bitmapList[x].newIndex
+                bitmapList[x].bitmap = null
+                bitmapList[x].newIndex = -1
             }
         }
 

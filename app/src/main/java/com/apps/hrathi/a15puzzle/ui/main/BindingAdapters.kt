@@ -1,13 +1,11 @@
 package com.apps.hrathi.a15puzzle.ui.main
 import android.app.Activity
-import android.graphics.Bitmap
-import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
-import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.widget.Button
 import android.widget.GridLayout
-import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.core.view.setPadding
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -33,25 +31,29 @@ fun createGrid(gridLayout: GridLayout, viewModel: MainViewModel, gridSize : Int)
 
     for (i in 0 until gridSize) {
         val layoutParams = gridLayout.layoutParams
-        val imageButton = ImageButton(activity).apply {
+        val imageButton = Button(activity).apply {
             layoutParams.width = GridLayout.LayoutParams.WRAP_CONTENT
             layoutParams.height = GridLayout.LayoutParams.WRAP_CONTENT
-            maxWidth = 10
-            maxHeight = 10
             setOnClickListener {
                 viewModel.moveToEmpty(i)
             }
+            setTextSize(TypedValue.COMPLEX_UNIT_PX, 100F)
         }
         setImageSrc(imageButton, viewModel.fullBitmapLiveData, i)
+        gridLayout.useDefaultMargins = true
         gridLayout.addView(imageButton)
     }
 }
 
 @BindingAdapter("imageSrc", "bind:index")
-fun setImageSrc(view: ImageButton, liveData: LiveData<ArrayList<ImageTile?>>, index: Int) {
+fun setImageSrc(view: Button, liveData: LiveData<ArrayList<ImageTile>>, index: Int) {
     liveData.observe(view.context as LifecycleOwner, Observer {
         if (it.size > 0) {
-            view.setImageBitmap(it[index]?.bitmap)
+            val bitmapDrawable = BitmapDrawable(view.resources, it[index].bitmap)
+            view.background = bitmapDrawable
+
+            val newIndex = it[index].newIndex
+            view.text = if(newIndex >= 0) newIndex.toString() else ""
         }
     })
 }
