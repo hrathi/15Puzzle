@@ -30,6 +30,6 @@ class ImageRepository {
     }
 
     companion object {
-        private const val ACCESS_KEY: String = "Tvl1sNw2KmfrYR1upXHrabrE78ZoUnf30Dsp_W_q6Rg"
+        private const val ACCESS_KEY: String = "Tvl1sNw2K.."
     }
 }
